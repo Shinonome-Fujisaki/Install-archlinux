@@ -1,1 +1,64 @@
 Install desktop on the archlinux
+
+Desktop provided：Plasma 5 ，Gnome 3 ，Cinnamon ，Xfce 4 , Lxde 
+
+                    1.Install KDE Plasma 5 on Arch Linux
+                   
+# pacman -Syu                                           // To update
+
+# pacman -S xf86-video-vesa                             // Install graphics driver
+# pacman -S xf86-video-nouveau
+# pacman -S xf86-video-ati
+# pacman -S xf86-video-intel
+
+# pacman -S xorg xorg-utils plasma konsole dolphin       // Install xorg,plasma,konsole,dolphin
+# pacman -S kf5 kf5-aids 
+# pacman -S kdebase kdegraphics-ksnapshot gwenview
+
+# pacman -R plasma-mediacenter 
+
+# pacman -S ttf-freefont wqy-zenhei wqy-microhei
+
+# pacman -S sddm sddm-kcm / systemctl enable sddm
+
+# nano /etc/sddm.conf   
+    input
+--------------------------------------------------------
+# [Theme] 
+  # Current theme name 
+    Current=breeze 
+    
+  # Cursor theme 
+    CursorTheme=breeze_cursors
+--------------------------------------------------------
+# pacman -S gtk-engines gtk2 gtk3 gnome-themes-standard gnome-icon-theme
+
+# pacman -S networkmanager
+# systemctl enable NetworkManager
+# systemctl start NetworkManager
+
+# pacman -S alsa-utils pulseaudio pulseaudio-alsa libcanberra-pulse libcanberra-gstreamer jack2-dbus
+
+# pacman -S sudo 
+
+# useradd -m name  
+# passwd name
+# passwd
+
+# nano /etc/sudoers
+-------------------------------------------------------
+##
+## User privilege specification 
+##
+root ALL=(ALL) ALL 
+username ALL=(ALL) ALL
+-------------------------------------------------------
+
+# nano /etc/locale.gen 
+# locale-gen
+# nano /etc/locale.conf
+# LANG = ja_JP.UTF-8
+
+# sudo reboot
+
+=======================================================================================================================================
