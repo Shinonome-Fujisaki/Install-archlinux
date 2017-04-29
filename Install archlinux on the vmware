@@ -3,6 +3,10 @@ Install archlinux on the vmware
 explain：ISO Edition：Archlinux-2016.06.01-dual.iso  
          vmware Edition：VMware Workstation Pro 12
 
+Installation instruction：1.Plan --- 2.Connection network --- 3.Test network --- 4.Disk partition --- 5.Format ---
+                          6.mount --- 7.To configure --- 8.Configure new system --- 9.timezone --- 10.hostname ---
+                          11.network --- 12.Install grub --- 13.uninstall --- 14.reboot
+
       1.Plan
 Linux system partition ：/boot   /home  /  swap
 /boot == system start-up.
@@ -39,4 +43,64 @@ Give an example。 If the computer hard drive is 50G.
 # select ( default p ): input p
 # Enter X 2                            //   swap
 # command ( m for help ): input w      //   confirm    
+
+      5.Format
+# mkfs.ext4  /dev/sda1                 // Format sda1 
+# mkfs.ext4  /dev/sda2                 // Format sda2
+# mkfs.ext4  /dev/sda3                 // Format sda3
+# mkswap     /dev/sda4                 // Format sda4
+
+      6.mount
+# mount  /dev/sda3  /mnt               // mount sda3 
+# mkdir  /mnt/boot
+# mount  /dev/sda1   /mnt/boot         // mount sda1
+# mkdir  /mnt/home
+# mount  /dev/sda2   /mnt/home         // mount sda2
+# swapon  /dev/sda4                    // mount sda4
+
+      7.To configure
+# nano  /etc/pacman.d/mirrorlist 
+         input
+--------------------------------------------------------------------------         
+# Server = http://ftp.tsukuba.wide.ad.jp/Linux/archlinux/$repo/os/$arch  
+# Server = http://ftp.jaist.ac.jp/pub/Linux/ArchLinux/$repo/os/$arch
+---------------------------------------------------------------------------
+# pacman -Syy                           // Update configuration
+# pacstrap  /mnt base base-devel        // Install basic system on the mnt
+
+      8.Configure new system
+# genfstab -p /mnt >> /mnt/etc/fstab 
+# arch-chroot /mnt                      // Enter new system
+
+      9.timezone
+# tzselect 
+# 4.Asia --> 19.japan
+  If failed
+--------------------------------------------------------
+# ln -s  /usr/share/zoneinfo/Asia/Tokyo  /etc/localtime 
+--------------------------------------------------------
+
+      10.hostname
+# nano /etc/hostname                     // input hostname  
+
+      11.network
+# pacman -S net-tools                    // Install network-tools 
+
+      12.Install grub 
+# pacman -S grub-bios                    // Install grub
+----------------------------------------------------------------------
+# pacman -S os-prober                    // Dual system selection
+----------------------------------------------------------------------
+# grub-install --recheck /dev/sda        // Install grub on the sda
+# grub-mkconfig -o /boot/grub/grub.cfg   // Configure grub
+# exit                                   // Exit new system
+
+      13.uninstall
+# umount -R  /mnt/home                   // uninstall home  
+# umount -R  /mnt/boot                   // uninstall boot
+# umount -R  /mnt                        // uninstall Root partition
+
+      14.reboot
+# reboot        
+
 
