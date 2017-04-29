@@ -1,2 +1,42 @@
 Install archlinux on the vmware
-sda-------------------------------50GiB 
+
+explain：ISO Edition：Archlinux-2016.06.01-dual.iso  
+         vmware Edition：VMware Workstation Pro 12
+
+      1.Plan
+Linux system partition ：/boot   /home  /  swap
+/boot == system start-up.
+/home == Here’s where your data is stored.
+  /   == This is the root directory.
+swap  == Swap partition.
+
+Give an example。 If the computer hard drive is 50G.
+/boot == 200MiB ;  /home ==  20GiB ;  / ==  27GiB ;  swap ==  2.8GiB
+
+      2.Connection network
+# lsblk 
+
+      3.Test network
+# dhcpcd  
+# www.google.co.jp
+
+      4.Disk partition
+# fdisk -l
+# fdisk  /dev/sda
+# command ( m for help ):  input n
+# select ( default p ): input p
+# Enter X 2
+# +200M                                //  /boot
+# command ( m for help ): input n        
+# select ( default p ): input p 
+# Enter X 2
+# +20G                                 //   /home
+# command ( m for help ):  input n
+# select ( default p ): input p
+# Enter X 2
+# +27G                                 //   /
+# command ( m for help ):  input n
+# select ( default p ): input p
+# Enter X 2                            //   swap
+# command ( m for help ): input w      //   confirm    
+
