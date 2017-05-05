@@ -60,5 +60,50 @@ username ALL=(ALL) ALL
 # LANG = ja_JP.UTF-8
 
 # sudo reboot
+========================================================================================================================================
 
-=======================================================================================================================================
+                    2.Install Gnome 3 on Arch Linux
+
+# pacman -S xorg                                              
+
+# pacman -S mesa                                             
+# pacman -S xf86-video-vesa                                   
+# pacman -S gnome-extra                                       
+# pacman -S gdm                                               
+# systemctl enable gdm                                        
+
+# pacman -S ttf-dejavu ttf-freefont wqy-microhei wqy-zenhei   
+
+# pacman -S networkmanager                                      
+# systemctl enable NetworkManager.service                    
+
+# pacman -S alsa-utils pulseaudio pulseaudio-alsa libcanberra-pulse libcanberra-gstreamer jack2-dbus 
+
+# pacman -S sudo  
+
+# useradd -m name                                         
+# passwd name 
+# passwd
+
+# nano /etc/sudoers 
+     input
+-----------------------------------------------------------------
+##                                                          
+## User privilege specification 
+## 
+root ALL=(ALL) ALL 
+username ALL=(ALL) ALL
+-----------------------------------------------------------------
+
+# nano /etc/locale.gen
+# locale-gen
+# nano /etc/locale.conf
+# LANG = ja_JP.UTF-8 
+
+# sudo reboot 
+
+    additional
+# sudo pacman -S gnome-tweak-tool                            
+# pacman -S numix-circle-icon-theme-git                      
+# yaourt dash-to-dock   
+========================================================================================================================================
